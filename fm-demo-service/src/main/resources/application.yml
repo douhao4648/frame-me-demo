@@ -1,0 +1,70 @@
+server:
+  port: 9090
+
+management:
+  server:
+    port: 9091
+
+spring:
+  application:
+    name: fm-demo
+  datasource:
+    url: jdbc:h2:mem:fm_demo;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 10
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: assign_id
+
+logging:
+  file:
+    path: ./logs
+    name: ${spring.application.name}
+
+springdoc:
+  # /v3/api-docs
+  api-docs:
+    enabled: true
+  # /swagger-ui.html
+  swagger-ui:
+    enabled: true
+
+# 依赖通过 Maven profile "p6spy" 引入：mvn ... -Pp6spy
+decorator:
+  datasource:
+    enabled: true
+    p6spy:
+      enable-logging: true
+
+frame:
+  me:
+    mybatis:
+      meta-object-handler:
+        enabled: true
+    swagger:
+      enabled: true
+      title: FM Demo API
+      description: FM Demo 接口文档
+      version: 1.0.0
+      groups:
+        - name: demo-api
+          paths-to-match:
+            - /api/**
