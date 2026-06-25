@@ -17,6 +17,10 @@
     <dependencies>
         <dependency>
             <groupId>com.frame.me</groupId>
+            <artifactId>frame-me-tester-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frame.me</groupId>
             <artifactId>frame-me-api</artifactId>
         </dependency>
         <dependency>

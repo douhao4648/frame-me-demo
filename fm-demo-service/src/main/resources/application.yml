@@ -1,13 +1,22 @@
 server:
-  port: 9090
+  port: 8080
 
 management:
   server:
-    port: 9091
+    port: 8081
 
 spring:
   application:
     name: fm-demo
+  http:
+    clients:
+      connect-timeout: 3s
+      read-timeout: 10s
+    serviceclient:
+      tester:
+        base-url: http://localhost:9090
+        read-timeout: 5s
+
   datasource:
     url: jdbc:h2:mem:fm_demo;MODE=MySQL;DB_CLOSE_DELAY=-1
     username: sa
