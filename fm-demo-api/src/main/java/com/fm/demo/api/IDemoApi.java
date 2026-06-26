@@ -4,7 +4,7 @@ import com.fm.demo.api.dto.DemoDTO;
 import com.fm.demo.api.query.DemoQuery;
 import com.fm.demo.api.vo.DemoVO;
 import com.frame.me.api.result.IResult;
-import com.frame.me.api.result.PageResult;
+import com.frame.me.api.result.PageData;
 import com.frame.me.validation.CreateGroup;
 import com.frame.me.validation.UpdateGroup;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,11 +15,7 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.service.annotation.DeleteExchange;
-import org.springframework.web.service.annotation.GetExchange;
-import org.springframework.web.service.annotation.HttpExchange;
-import org.springframework.web.service.annotation.PostExchange;
-import org.springframework.web.service.annotation.PutExchange;
+import org.springframework.web.service.annotation.*;
 
 import java.util.List;
 
@@ -47,7 +43,7 @@ public interface IDemoApi {
      */
     @Operation(summary = "分页查询", description = "根据姓名、年龄分页查询演示数据")
     @GetExchange("/page")
-    IResult<PageResult<DemoVO>> page(@Valid DemoQuery query);
+    IResult<PageData<DemoVO>> page(@Valid DemoQuery query);
 
     /**
      * 根据 ID 查询演示数据.
@@ -79,7 +75,7 @@ public interface IDemoApi {
     @Operation(summary = "根据 ID 更新", description = "根据主键 ID 更新演示数据，需传入 version 用于乐观锁控制")
     @PutExchange("/{id}")
     IResult<Boolean> update(@Parameter(description = "数据 ID", required = true) @Positive(message = "数据 ID 必须大于 0") @PathVariable Long id,
-                             @Validated(UpdateGroup.class) @RequestBody DemoDTO dto);
+                            @Validated(UpdateGroup.class) @RequestBody DemoDTO dto);
 
     /**
      * 根据 ID 删除演示数据（逻辑删除）.

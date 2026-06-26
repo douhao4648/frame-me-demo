@@ -1,12 +1,13 @@
 package com.fm.demo.controller;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.fm.demo.api.ITesterDemoApi;
 import com.fm.demo.infrastructure.client.tester.TesterDemoClient;
+//import com.frame.me.adapter.api.result.PageResult;
 import com.frame.me.api.result.IResult;
-import com.frame.me.api.result.PageResult;
+import com.frame.me.api.result.PageData;
 import com.frame.me.tester.api.dto.DemoDTO;
 import com.frame.me.tester.api.query.DemoComplexQuery;
+//import com.frame.me.tester.api.query.DemoOldQuery;
 import com.frame.me.tester.api.query.DemoQuery;
 import com.frame.me.tester.api.vo.DemoComplexVO;
 import com.frame.me.tester.api.vo.DemoVO;
@@ -28,14 +29,20 @@ public class TesterDemoController implements ITesterDemoApi {
 
     @Override
     public IResult<List<DemoVO>> list() {
-        return testerDemoClient.list();
+        IResult<List<DemoVO>> res = testerDemoClient.list();
+        return res;
     }
 
     @Override
-    public IResult<PageResult<DemoVO>> page(DemoQuery query) {
-//        return testerDemoClient.page(BeanUtil.beanToMap(query));
-        return testerDemoClient.page(query);
+    public IResult<PageData<DemoVO>> page(DemoQuery query) {
+        IResult<PageData<DemoVO>> res = testerDemoClient.page(query);
+        return res;
     }
+
+//    @Override
+//    public IResult<PageResult<DemoVO>> pageOld(DemoOldQuery param) {
+//        return testerDemoClient.pageOld(param);
+//    }
 
     @Override
     public IResult<List<DemoComplexVO>> complexList(DemoComplexQuery query) {

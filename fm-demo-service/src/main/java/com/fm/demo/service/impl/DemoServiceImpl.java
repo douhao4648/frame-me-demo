@@ -10,7 +10,7 @@ import com.fm.demo.entity.DemoEntity;
 import com.fm.demo.mapper.DemoMapper;
 import com.fm.demo.service.IDemoService;
 import com.fm.demo.service.convert.DemoConvert;
-import com.frame.me.api.result.PageResult;
+import com.frame.me.api.result.PageData;
 import com.frame.me.base.exception.BusinessException;
 import com.frame.me.base.mybatis.util.PageUtils;
 import com.frame.me.base.result.ResultCode;
@@ -36,14 +36,14 @@ public class DemoServiceImpl implements IDemoService {
     }
 
     @Override
-    public PageResult<DemoVO> page(DemoQuery query) {
+    public PageData<DemoVO> page(DemoQuery query) {
         Page<DemoEntity> page = PageUtils.toPage(query, "create_time:desc");
 
         QueryWrapper<DemoEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StrUtil.isNotBlank(query.getName()), "name", query.getName());
         wrapper.eq(query.getAge() != null, "age", query.getAge());
 
-        return PageUtils.toResult(demoMapper.selectPage(page, wrapper), demoConvert::toVo);
+        return PageUtils.toPageData(demoMapper.selectPage(page, wrapper), demoConvert::toVo);
     }
 
     @Override

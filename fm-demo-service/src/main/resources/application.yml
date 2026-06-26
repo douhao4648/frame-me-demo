@@ -16,6 +16,8 @@ spring:
       tester:
         base-url: http://localhost:9090
         read-timeout: 5s
+  jackson:
+    default-property-inclusion: non_null
 
   datasource:
     url: jdbc:h2:mem:fm_demo;MODE=MySQL;DB_CLOSE_DELAY=-1

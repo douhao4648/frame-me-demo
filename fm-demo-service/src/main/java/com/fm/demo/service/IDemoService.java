@@ -3,7 +3,7 @@ package com.fm.demo.service;
 import com.fm.demo.api.dto.DemoDTO;
 import com.fm.demo.api.query.DemoQuery;
 import com.fm.demo.api.vo.DemoVO;
-import com.frame.me.api.result.PageResult;
+import com.frame.me.api.result.PageData;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface IDemoService {
      * @param query 查询参数
      * @return 分页结果
      */
-    PageResult<DemoVO> page(DemoQuery query);
+    PageData<DemoVO> page(DemoQuery query);
 
     /**
      * 根据 ID 查询演示数据.

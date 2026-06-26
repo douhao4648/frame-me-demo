@@ -29,4 +29,4 @@
 
 ## 关键约定一句话
 
-TODO：用一句话概括项目最重要的约定（例如：所有业务异常必须继承 `BusinessException` 并通过统一异常处理器转换）。
+所有 Controller 实现 `fm-demo-api` 定义的 HTTP 接口契约，业务层通过 `MapStruct` 转换器完成 Entity/DTO/VO 映射，数据访问层继承 `BaseMapper` 并复用 `frame-me-parent` 的统一响应、异常处理和 MyBatis-Plus 约定；跨服务调用通过 `@ImportHttpServices` 装配 Spring HTTP Interface 声明式客户端实现。

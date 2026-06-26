@@ -6,7 +6,7 @@ import com.fm.demo.api.query.DemoQuery;
 import com.fm.demo.api.vo.DemoVO;
 import com.fm.demo.service.IDemoService;
 import com.frame.me.api.result.IResult;
-import com.frame.me.api.result.PageResult;
+import com.frame.me.api.result.PageData;
 import com.frame.me.base.mybatis.util.SnowflakeUtils;
 import com.frame.me.base.result.Result;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class DemoController implements IDemoApi {
     }
 
     @Override
-    public IResult<PageResult<DemoVO>> page(DemoQuery query) {
+    public IResult<PageData<DemoVO>> page(DemoQuery query) {
         return Result.success(demoService.page(query));
     }
 
