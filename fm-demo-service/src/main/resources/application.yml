@@ -65,17 +65,16 @@ decorator:
     p6spy:
       enable-logging: true
 
-frame:
-  me:
-    mybatis:
-      meta-object-handler:
-        enabled: true
-    swagger:
+me:
+  mybatis:
+    meta-object-handler:
       enabled: true
-      title: FM Demo API
-      description: FM Demo 接口文档
-      version: 1.0.0
-      groups:
-        - name: demo-api
-          paths-to-match:
-            - /api/**
+  swagger:
+    enabled: true
+    title: FM Demo API
+    description: FM Demo 接口文档
+    version: 1.0.0
+    groups:
+      - name: demo-api
+        paths-to-match:
+          - /api/**
