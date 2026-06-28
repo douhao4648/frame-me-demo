@@ -63,7 +63,7 @@ Entity 层（领域模型）
 
 手动开启的配置：
 - `DemoConfiguration` 使用 `@ImportHttpServices(group = "tester", basePackages = "com.fm.demo.infrastructure.client.tester")` 装配 `TesterDemoClient`。
-- `application.yml` 中 `frame.me.mybatis.meta-object-handler.enabled: true` 开启自动填充 create_time / update_time。
+- `application.yml` 中 `me.mybatis.meta-object-handler.enabled: true` 开启自动填充 create_time / update_time。
 - `spring.sql.init.mode: always` 确保 H2 内存库启动时执行 `schema.sql` 建表。
 
 ## 响应与异常流水线
@@ -73,7 +73,7 @@ Entity 层（领域模型）
 以 `GET /api/demo/{id}` 为例：
 
 1. **请求入口**：`DemoController.getById(Long id)` 接收请求。
-2. **参数校验**：`@Positive` 校验 id > 0，失败时由 `MethodArgumentNotValidException` 抛出。
+2. **参数校验**：`@Positive` 校验 id > 0，失败时由 `ConstraintViolationException` 抛出（`@Validated` 开启方法级参数校验）。
 3. **业务处理**：`DemoController` 委托 `IDemoService.getById(id)`。
 4. **数据访问**：`DemoServiceImpl` 调用 `DemoMapper.selectById(id)` 查询 `DemoEntity`。
 5. **实体转换**：`DemoServiceImpl` 通过 `DemoConvert.toVo(entity)` 转为 `DemoVO`。
@@ -98,7 +98,7 @@ Entity 层（领域模型）
 
 1. **接口定义**：`TesterDemoClient` 继承 `com.frame.me.tester.api.IDemoApi`（来自 `frame-me-tester-api` 依赖）。
 2. **装配配置**：`DemoConfiguration` 使用 `@ImportHttpServices(group = "tester", basePackages = "com.fm.demo.infrastructure.client.tester")`，Spring HTTP Interface 自动扫描并生成代理 Bean。
-3. **调用入口**：`TesterDemoController` 实现 `ITesterDemoApi`，将请求委托给 `TesterDemoClient`。
+3. **调用入口**：`TesterDemoController` 实现 `ITesterDemoApi`，将请求委托给 `TesterDemoClient`（包含 `list`、`page`、`complexList`、`getById`、`create`、`update`、`delete` 7 个方法）。
 4. **远程地址**：`application.yml` 中 `spring.http.serviceclient.tester.base-url: http://localhost:9090` 指定目标服务地址。
 5. **超时配置**：`spring.http.clients.connect-timeout: 3s`、`read-timeout: 10s` 为全局默认值；`tester` 分组可单独覆盖 `read-timeout: 5s`。
 6. **结果透传**：`TesterDemoController` 直接将 `TesterDemoClient` 返回的 `IResult` 透传给调用方，不做额外转换。

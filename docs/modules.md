@@ -29,7 +29,7 @@ com.fm.demo.api
 
 对外接口：
 - `IDemoApi`：本地 CRUD，路径前缀 `/api/demo`，包含 list / page / getById / create / update / delete 6 个方法。
-- `ITesterDemoApi`：跨服务透传，路径前缀 `/api/tester-demo`，方法签名与 frame-me-tester 的 `IDemoApi` 对齐，用于验证 Spring HTTP Interface 客户端链路。
+- `ITesterDemoApi`：跨服务透传，路径前缀 `/api/tester-demo`，包含 `list`、`page`、`complexList`、`getById`、`create`、`update`、`delete` 7 个方法，用于验证 Spring HTTP Interface 客户端链路。
 
 核心依赖：`frame-me-api`（Result/IResult/PageData）、`frame-me-tester-api`（跨服务调用 DTO/VO/Query）、`spring-web`（`@HttpExchange` 等注解）。
 
@@ -73,4 +73,4 @@ com.fm.demo
 - `mybatis-plus.global-config.db-config`：逻辑删除字段 `deleted`、主键策略 `assign_id`（雪花 ID）
 - `spring.http.serviceclient.tester.base-url`：http://localhost:9090（frame-me-tester 地址）
 - `spring.jackson.default-property-inclusion`：`non_null`，全局 JSON 序列化忽略 null 字段（跨服务透传时避免传递空字段）
-- `frame.me.swagger`：SpringDoc 分组配置（`demo-api`，匹配 `/api/**`）
+- `me.swagger`：SpringDoc 分组配置（`demo-api`，匹配 `/api/**`）

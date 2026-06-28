@@ -37,4 +37,4 @@
 - **自定义 starter 接入**：在 `fm-demo-service/pom.xml` 引入目标 starter，配置项写入 `application.yml`。
 - **动态数据源扩展**：`frame-me-booter` 已集成 `frame-me-starter-dynamic-ds`，在 `application.yml` 中按动态数据源格式配置即可。
 - **SQL 打印**：通过 `p6spy` Maven profile 激活（`mvn -Pp6spy spring-boot:run`），由 `decorator.datasource.p6spy` 配置控制。
-- **Swagger 分组**：在 `application.yml` 的 `frame.me.swagger.groups` 中新增分组定义。
+- **Swagger 分组**：在 `application.yml` 的 `me.swagger.groups` 中新增分组定义。
