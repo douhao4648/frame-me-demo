@@ -23,10 +23,10 @@
             <groupId>com.frame.me</groupId>
             <artifactId>frame-me-booter</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.frame.me</groupId>-->
-<!--            <artifactId>frame-me-adapter-starter</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.frame.me</groupId>-->
+        <!--            <artifactId>frame-me-adapter-starter</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -36,9 +36,25 @@
         <!--            <artifactId>druid-spring-boot-4-starter</artifactId>-->
         <!--        </dependency>-->
         <!--        <dependency>-->
-        <!--            <groupId>io.micrometer</groupId>-->
-        <!--            <artifactId>micrometer-registry-prometheus</artifactId>-->
+        <!--            <groupId>com.frame.me</groupId>-->
+        <!--            <artifactId>frame-me-starter-ws-mvc</artifactId>-->
         <!--        </dependency>-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
