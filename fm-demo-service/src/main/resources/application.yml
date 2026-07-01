@@ -66,9 +66,15 @@ decorator:
       enable-logging: true
 
 me:
+#  snowflake:
+#    worker-id: 2
+#    datacenter-id: 2
   mybatis:
     meta-object-handler:
       enabled: true
+    snowflake:
+      worker-id: 1
+      datacenter-id: 1
   swagger:
     enabled: true
     title: FM Demo API

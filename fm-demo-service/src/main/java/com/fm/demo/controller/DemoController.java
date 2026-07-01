@@ -7,7 +7,6 @@ import com.fm.demo.api.vo.DemoVO;
 import com.fm.demo.service.IDemoService;
 import com.frame.me.api.result.IResult;
 import com.frame.me.api.result.PageData;
-import com.frame.me.base.mybatis.util.SnowflakeUtils;
 import com.frame.me.base.result.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -24,8 +23,6 @@ import java.util.List;
 public class DemoController implements IDemoApi {
 
     private final IDemoService demoService;
-
-    private final SnowflakeUtils snowflakeUtils;
 
     @Override
     public IResult<List<DemoVO>> list() {

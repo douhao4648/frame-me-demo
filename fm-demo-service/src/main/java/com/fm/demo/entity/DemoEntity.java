@@ -1,7 +1,8 @@
 package com.fm.demo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.frame.me.base.mybatis.entity.BaseVersionEntity;
+
+import com.frame.me.mybatis.plus.entity.BaseVersionEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

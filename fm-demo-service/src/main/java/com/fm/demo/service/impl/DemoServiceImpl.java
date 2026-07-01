@@ -12,8 +12,8 @@ import com.fm.demo.service.IDemoService;
 import com.fm.demo.service.convert.DemoConvert;
 import com.frame.me.api.result.PageData;
 import com.frame.me.base.exception.BusinessException;
-import com.frame.me.base.mybatis.util.PageUtils;
 import com.frame.me.base.result.ResultCode;
+import com.frame.me.mybatis.plus.util.PageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
