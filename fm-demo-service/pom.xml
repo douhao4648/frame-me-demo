@@ -39,10 +39,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.alibaba</groupId>-->
-        <!--            <artifactId>druid-spring-boot-4-starter</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-4-starter</artifactId>
+        </dependency>
         <!--        <dependency>-->
         <!--            <groupId>com.frame.me</groupId>-->
         <!--            <artifactId>frame-me-starter-ws-mvc</artifactId>-->
