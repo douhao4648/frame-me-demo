@@ -42,5 +42,5 @@ Swagger UI：`http://localhost:8080/swagger-ui.html`
 
 - 测试类命名：`XxxTest`（如 `DemoServiceImplTest`）。
 - 测试方法命名：`shouldXxxWhenYyy` 或 `testXxx`。
-- 数据准备：H2 内存数据库启动时自动执行 `schema.sql` 建表，测试可直接操作数据库。
+- 数据准备：启动时自动执行 `schema.sql` 建表（当前数据源为 MySQL，见 `application.yml`），测试可直接操作数据库。
 - 若使用 Testcontainers：在测试类上标注 `@Testcontainers` 和 `@Container` 启动 MySQL 实例。

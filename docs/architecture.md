@@ -64,7 +64,7 @@ Entity 层（领域模型）
 手动开启的配置：
 - `DemoConfiguration` 使用 `@ImportHttpServices(group = "tester", basePackages = "com.fm.demo.infrastructure.client.tester")` 装配 `TesterDemoClient`。
 - `application.yml` 中 `me.mybatis.meta-object-handler.enabled: true` 开启自动填充 create_time / update_time。
-- `spring.sql.init.mode: always` 确保 H2 内存库启动时执行 `schema.sql` 建表。
+- `spring.sql.init.mode: always` 确保启动时执行 `schema.sql` 建表（当前数据源为 MySQL）。
 
 ## 响应与异常流水线
 
