@@ -5,7 +5,7 @@
 | 模块/组件 | 直接依赖 | 职责 |
 |---|---|---|
 | fm-demo-api | frame-me-api、frame-me-tester-api | 对外暴露的接口契约与 DTO |
-| fm-demo-service | fm-demo-api、frame-me-booter、frame-me-starter-mybatis-plus、frame-me-starter-dynamic-ds、druid | 启动服务，集成 Frame Me 各 starter 能力 |
+| fm-demo-service | fm-demo-api、frame-me-boot、frame-me-starter-mybatis-plus、frame-me-starter-dynamic-ds、druid | 启动服务，集成 Frame Me 各 starter 能力 |
 
 ## 详细说明
 
@@ -35,7 +35,7 @@ com.fm.demo.api
 
 ### fm-demo-service
 
-职责：Spring Boot 启动服务，实现 `fm-demo-api` 定义的接口，集成 `frame-me-booter` 获得通用能力（统一响应、异常处理、MyBatis-Plus、雪花 ID、分页等）。
+职责：Spring Boot 启动服务，实现 `fm-demo-api` 定义的接口，集成 `frame-me-boot` 获得通用能力（统一响应、异常处理、MyBatis-Plus、雪花 ID、分页等）。
 
 启动类路径：`com.fm.demo.Application`
 

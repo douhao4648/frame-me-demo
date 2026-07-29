@@ -1,4 +1,4 @@
-# frame-me-demo
+# fm-demo
 
 Frame Me 演示工程，用于验证和展示 `frame-me-parent` 各 starter 的使用方式。
 
@@ -51,7 +51,8 @@ mvn -pl fm-demo-service spring-boot:run
 
 ## 接口文档
 
-TODO：补充 Swagger / SpringDoc 文档地址，例如 `http://localhost:8080/swagger-ui.html`。
+- Swagger UI：http://localhost:8080/swagger-ui.html
+- API Docs：http://localhost:8080/v3/api-docs
 
 ## 模块说明
 
@@ -64,7 +65,11 @@ TODO：补充 Swagger / SpringDoc 文档地址，例如 `http://localhost:8080/s
 基于 Spring Boot 的启动服务，直接依赖：
 
 - `fm-demo-api`
-- `frame-me-booter`（集成 `frame-me-starter-auth`、`frame-me-starter-cloud`、`frame-me-starter-dynamic-ds` 等基础能力）
+- `frame-me-boot`（一键集成 base、auth、multi-redis、l1l2-cache、sensi-encrypt、sse-mvc、op-audit、msg-notify、cloud 等通用能力）
+- `frame-me-starter-mybatis-plus`（数据访问）
+- `frame-me-starter-dynamic-ds`（多数据源）
+- `druid-spring-boot-4-starter`（Druid 连接池监控）
+- `redisson`、`freemarker`、`httpclient5`、`micrometer-registry-prometheus` 等可选增强
 
 ## 开发约定
 

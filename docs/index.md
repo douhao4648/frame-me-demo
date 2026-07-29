@@ -7,7 +7,7 @@
 `fm-demo` 是 Frame Me 技术体系下的演示聚合工程，用于验证和展示 `frame-me-parent` 中各 starter 的使用方式。当前包含两个子模块：
 
 - `fm-demo-api`：对外暴露的接口契约与 DTO。
-- `fm-demo-service`：基于 Spring Boot 的启动服务，依赖 `frame-me-booter` 集成各基础能力。
+- `fm-demo-service`：基于 Spring Boot 的启动服务，依赖 `frame-me-boot` 集成各基础能力。
 
 技术栈：Java 25、Spring Boot 4.0.7、Maven、MyBatis-Plus、MySQL（多数据源 + Druid 监控）。
 

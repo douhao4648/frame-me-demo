@@ -11,7 +11,7 @@
 │  └──────┬──────┘    └──────────┬──────────┘  │
 │         │                      │              │
 │         │         ┌────────────┴──────────┐  │
-│         │         │   frame-me-booter     │  │
+│         │         │   frame-me-boot     │  │
 │         │         │  (传递各 starter 能力) │  │
 │         │         └──────────┬────────────┘  │
 │         │                    │               │
@@ -26,8 +26,8 @@
 更准确的依赖关系：
 
 - `fm-demo` 聚合 `fm-demo-api` 与 `fm-demo-service`。
-- `fm-demo-service` 依赖 `fm-demo-api` 和 `frame-me-booter`。
-- `frame-me-booter` 进一步集成 `frame-me-starter-auth`、`frame-me-starter-cloud`、`frame-me-starter-dynamic-ds` 等 starter。
+- `fm-demo-service` 依赖 `fm-demo-api` 和 `frame-me-boot`。
+- `frame-me-boot` 进一步集成 `frame-me-starter-auth`、`frame-me-starter-cloud`、`frame-me-starter-multi-redis`、`frame-me-starter-l1l2-cache`、`frame-me-starter-sensi-encrypt`、`frame-me-starter-sse-mvc`、`frame-me-starter-op-audit`、`frame-me-starter-msg-notify` 等通用 starter；数据访问（`frame-me-starter-mybatis-plus`）、多数据源（`frame-me-starter-dynamic-ds`）按需显式引入。
 
 ## 分层原则
 
@@ -53,13 +53,12 @@ Entity 层（领域模型）
 
 ## 初始化 / 自动装配机制
 
-`fm-demo-service` 引入 `frame-me-booter`（Maven 依赖），该模块通过 Spring Boot 的 `spring.factories` / `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` 自动装配以下能力：
+`fm-demo-service` 引入 `frame-me-boot`（Maven 依赖），该模块通过传递依赖引入各 starter 的自动装配（`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`），提供以下能力：
 
 - 统一响应包装（`Result` / `IResult`）
 - 统一异常处理（`GlobalExceptionHandler`）
 - MyBatis-Plus 配置（分页插件、元对象处理器 `MetaObjectHandler`）
 - 雪花 ID 生成器（`SnowflakeUtils`）
-- Swagger / SpringDoc 分组配置
 
 手动开启的配置：
 - `DemoConfiguration` 使用 `@ImportHttpServices(group = "tester", basePackages = "com.fm.demo.infrastructure.client.tester")` 装配 `TesterDemoClient`。
@@ -84,7 +83,7 @@ Entity 层（领域模型）
 
 ### 异常请求
 
-异常统一由 `frame-me-booter` 传递的 `GlobalExceptionHandler` 捕获并转换，fm-demo 本身不重复定义：
+异常统一由 `frame-me-boot` 传递的 `GlobalExceptionHandler` 捕获并转换，fm-demo 本身不重复定义：
 
 - **业务异常**：`BusinessException`（如数据不存在）→ 返回对应 `ResultCode` 的响应。
 - **参数校验异常**：`MethodArgumentNotValidException`、`ConstraintViolationException` → 返回 `ResultCode.BAD_REQUEST`（400）。
@@ -109,12 +108,12 @@ Entity 层（领域模型）
 |---|---|---|
 | `Result` / `IResult` | `frame-me-api`（父工程） | 统一响应包装 |
 | `PageData` | `frame-me-api`（父工程） | 分页响应结构 |
-| `BusinessException` | `frame-me-base`（父工程） | 业务异常基类 |
-| `GlobalExceptionHandler` | `frame-me-booter`（父工程） | 统一异常处理器 |
-| `BaseVersionEntity` | `frame-me-base`（父工程） | 带乐观锁的实体基类 |
+| `BusinessException` | `frame-me-starter-base`（父工程） | 业务异常基类 |
+| `GlobalExceptionHandler` | `frame-me-starter-base`（父工程） | 统一异常处理器 |
+| `BaseVersionEntity` | `frame-me-starter-mybatis-plus`（父工程） | 带乐观锁的实体基类 |
 | `BaseMapper` | MyBatis-Plus | Mapper 基类 |
-| `SnowflakeUtils` | `frame-me-base`（父工程） | 雪花 ID 生成器 |
-| `PageUtils` | `frame-me-base`（父工程） | 分页对象转换工具 |
+| `SnowflakeUtils` | `frame-me-starter-base`（父工程） | 雪花 ID 生成器 |
+| `PageUtils` | `frame-me-starter-mybatis-plus`（父工程） | 分页对象转换工具 |
 | `DemoConfiguration` | `com.fm.demo.infrastructure.config.DemoConfiguration` | HTTP 客户端装配配置 |
 | `TesterDemoClient` | `com.fm.demo.infrastructure.client.tester.TesterDemoClient` | 声明式 HTTP 客户端 |
 
@@ -122,6 +121,6 @@ Entity 层（领域模型）
 
 - **新增业务模块**：参照 `DemoController → IDemoService → DemoServiceImpl → DemoMapper → DemoEntity` 分层，新建对应包与类。
 - **新增跨服务客户端**：新建接口继承目标服务的 API 接口，在 `DemoConfiguration` 的 `@ImportHttpServices` 中增加 `basePackages` 路径。
-- **自定义 starter 接入**：在 `fm-demo-service/pom.xml` 引入目标 starter，配置项写入 `application.yml`，由 `frame-me-booter` 自动装配。
-- **扩展数据源**：`frame-me-booter` 已集成 `frame-me-starter-dynamic-ds`，在 `application.yml` 中按动态数据源配置格式增加即可。
+- **自定义 starter 接入**：在 `fm-demo-service/pom.xml` 引入目标 starter，配置项写入 `application.yml`，由 `frame-me-boot` 自动装配。
+- **扩展数据源**：`frame-me-boot` 已集成 `frame-me-starter-dynamic-ds`，在 `application.yml` 中按动态数据源配置格式增加即可。
 - **扩展统一异常**：继承 `BusinessException` 或自定义异常，由 `GlobalExceptionHandler`（父工程）统一处理，无需在 fm-demo 中新增处理器。
