@@ -108,3 +108,6 @@ me:
       - name: demo-api
         paths-to-match:
           - /api/**
+  auth:
+    header-resolver:
+      enabled: true
