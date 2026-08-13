@@ -16,7 +16,7 @@ fm-demo
 - Spring Boot 4.0.7
 - Maven
 - MyBatis-Plus
-- H2（运行时内存数据库）
+- MySQL（多数据源 + Druid 监控；测试用 Testcontainers MySQL，H2 为可选运行时库）
 
 ## 前置条件
 
@@ -94,7 +94,3 @@ mvn clean package -DskipTests
 # 单独运行 service 模块测试
 mvn -pl fm-demo-service test
 ```
-
-## 许可证
-
-TODO：补充许可证信息。
