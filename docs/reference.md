@@ -8,7 +8,9 @@
 | API 模块 POM | `fm-demo-api/pom.xml` |
 | Service 模块 POM | `fm-demo-service/pom.xml` |
 | Service 应用配置 | `fm-demo-service/src/main/resources/application.yml` |
+| 日志配置 | `fm-demo-service/src/main/resources/logback-spring.xml` |
 | 数据库初始化脚本 | `fm-demo-service/src/main/resources/schema.sql` |
+| 静态资源 | `fm-demo-service/src/main/resources/static/` |
 
 ## 核心类/文件
 

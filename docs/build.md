@@ -44,6 +44,20 @@ mvn -pl fm-demo-service spring-boot:run -Pswagger
 mvn -pl fm-demo-service spring-boot:run -Pp6spy
 ```
 
+带 Prometheus 监控启动：
+
+```bash
+mvn -pl fm-demo-service spring-boot:run -Pprometheus
+```
+
+可叠加多个 profile（如同时开启 Swagger + SQL 打印）：
+
+```bash
+mvn -pl fm-demo-service spring-boot:run -Pswagger,p6spy
+```
+
+> 可用 profile：`swagger`（OpenAPI 文档）、`p6spy`（SQL 打印）、`prometheus`（监控指标）、`Apple-M1`（macOS netty DNS 原生支持）。
+
 ## 新增子模块/组件
 
 在 `fm-demo` 聚合工程下新增子模块的步骤：

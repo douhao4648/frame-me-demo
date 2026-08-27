@@ -17,6 +17,8 @@ fm-demo
 - Maven
 - MyBatis-Plus
 - MySQL（多数据源 + Druid 监控；测试用 Testcontainers MySQL，H2 为可选运行时库）
+- MapStruct（APT 编译期生成转换器）
+- Logback（复用 `frame-me-parent` 共享日志模板）
 
 ## 前置条件
 
@@ -65,11 +67,12 @@ mvn -pl fm-demo-service spring-boot:run
 基于 Spring Boot 的启动服务，直接依赖：
 
 - `fm-demo-api`
-- `frame-me-boot`（一键集成 base、auth、multi-redis、l1l2-cache、sensi-encrypt、sse-mvc、op-audit、msg-notify、cloud 等通用能力）
+- `frame-me-boot`（一键集成 base、auth（header-resolver）、multi-redis、l1l2-cache、sensi-encrypt、sse-mvc、op-audit、msg-notify、cloud 等通用能力）
 - `frame-me-starter-mybatis-plus`（数据访问）
 - `frame-me-starter-dynamic-ds`（多数据源）
 - `druid-spring-boot-4-starter`（Druid 连接池监控）
-- `redisson`、`freemarker`、`httpclient5`、`micrometer-registry-prometheus` 等可选增强
+- `redisson`、`freemarker`、`httpclient5` 等可选增强
+- Maven profiles：`prometheus`（监控）、`p6spy`（SQL 打印）、`swagger`（OpenAPI 文档）、`Apple-M1`（macOS DNS 原生支持）
 
 ## 开发约定
 

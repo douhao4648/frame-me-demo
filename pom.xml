@@ -8,7 +8,6 @@
         <groupId>com.frame.me</groupId>
         <artifactId>frame-me-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../frame-me-parent/pom.xml</relativePath>
     </parent>
 
     <groupId>com.fm.demo</groupId>

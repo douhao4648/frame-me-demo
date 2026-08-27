@@ -90,6 +90,18 @@ HTTP 状态码与业务状态码由 `ResultCode` 枚举定义（父工程），�
 ### SpringDoc / Swagger
 
 - 接口契约使用 `@Tag`、`@Operation`、`@Parameter`、`@Schema` 注解描述。
-- 分组配置在 `application.yml` 中：`me.swagger.groups` 定义 `demo-api` 分组，匹配 `/api/**`。`
-- 激活 Swagger 依赖：`mvn -Pswagger spring-boot:run`（`swagger` Maven profile 引入 `frame-me-starter-doc-openapi`）。
+- `springdoc.api-docs.enabled` / `springdoc.swagger-ui.enabled` 控制 OpenAPI 文档与 UI 开关。
+- 分组配置在 `application.yml` 中：`me.swagger.groups` 定义 `demo-api` 分组，匹配 `/api/**`。
+- 激活 Swagger 依赖：`mvn -pl fm-demo-service spring-boot:run -Pswagger`（`swagger` Maven profile 引入 `frame-me-starter-doc-openapi`）。
 - 文档地址：启动后访问 `/swagger-ui.html` 或 `/v3/api-docs`。
+
+### Auth 请求头解析
+
+- `application.yml` 中 `me.auth.header-resolver.enabled: true` 开启请求头解析器（由 `frame-me-boot` 传递的 `frame-me-starter-auth` 提供）。
+- 用于统一解析认证相关请求头，供下游业务使用。
+
+### 日志
+
+- `logback-spring.xml` 通过 `<include resource="logback-frame-me.xml"/>` 复用父工程共享日志模板（appender、profile 分级）。
+- 业务包日志级别可在 `logback-spring.xml` 中按 `<logger name="..."/>` 单独设置（当前 `com.fm.demo.mapper` 为 `INFO`）。
+- 日志输出目录：`./logs`（`logging.file.path` + `logging.file.name`）。

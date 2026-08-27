@@ -59,11 +59,14 @@ Entity 层（领域模型）
 - 统一异常处理（`GlobalExceptionHandler`）
 - MyBatis-Plus 配置（分页插件、元对象处理器 `MetaObjectHandler`）
 - 雪花 ID 生成器（`SnowflakeUtils`）
+- auth 请求头解析器（`header-resolver`，`application.yml` 中 `me.auth.header-resolver.enabled: true` 开启）
 
 手动开启的配置：
 - `DemoConfiguration` 使用 `@ImportHttpServices(group = "tester", basePackages = "com.fm.demo.infrastructure.client.tester")` 装配 `TesterDemoClient`。
 - `application.yml` 中 `me.mybatis.meta-object-handler.enabled: true` 开启自动填充 create_time / update_time。
 - `spring.sql.init.mode: always` 确保启动时执行 `schema.sql` 建表（当前数据源为 MySQL）。
+
+日志配置：`logback-spring.xml` 通过 `<include resource="logback-frame-me.xml"/>` 引入 `frame-me-parent` 共享日志模板（appender、profile 分级等），并为 `com.fm.demo.mapper` 设置 `INFO` 级别。
 
 ## 响应与异常流水线
 

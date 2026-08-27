@@ -5,7 +5,7 @@
 | 模块/组件 | 直接依赖 | 职责 |
 |---|---|---|
 | fm-demo-api | frame-me-api、frame-me-tester-api | 对外暴露的接口契约与 DTO |
-| fm-demo-service | fm-demo-api、frame-me-boot、frame-me-starter-mybatis-plus、frame-me-starter-dynamic-ds、druid | 启动服务，集成 Frame Me 各 starter 能力 |
+| fm-demo-service | fm-demo-api、frame-me-boot、frame-me-starter-mybatis-plus、frame-me-starter-dynamic-ds、druid、redisson、freemarker、httpclient5 | 启动服务，集成 Frame Me 各 starter 能力 |
 
 ## 详细说明
 
@@ -68,11 +68,15 @@ com.fm.demo
 核心配置项（`fm-demo-service/src/main/resources/application.yml`）：
 - `server.port`：8080
 - `management.server.port`：8081
-- `spring.datasource`：MySQL 主库 `frame_me_test_2`（Hikari），并配置 Druid 监控台（`/druid/*`，admin/admin）与 dynamic-datasource 第二数据源 `second`（`frame_me_test`）
+- `spring.datasource`：MySQL 主库（Hikari），并配置 Druid 监控台（`/druid/*`，admin/admin）与 dynamic-datasource 第二数据源 `second`
 - `spring.sql.init`：`mode: always` + `classpath:schema.sql`，启动自动建表
 - `mybatis-plus.global-config.db-config`：逻辑删除字段 `deleted`、主键策略 `assign_id`（雪花 ID）
 - `me.mybatis.meta-object-handler.enabled: true`：开启公共字段自动填充；`me.mybatis.snowflake`：worker-id=1 / datacenter-id=1
 - `spring.http.serviceclient.tester.base-url`：http://localhost:9090（frame-me-tester 地址）
 - `spring.jackson.default-property-inclusion`：`non_null`，全局 JSON 序列化忽略 null 字段（跨服务透传时避免传递空字段）
 - `decorator.datasource.p6spy`：P6Spy SQL 监控（依赖经 Maven profile `p6spy` 引入）
-- `me.swagger`：SpringDoc 分组配置（`demo-api`，匹配 `/api/**`）
+- `springdoc`：SpringDoc/OpenAPI 配置（`api-docs` + `swagger-ui` 启用），`me.swagger` 配置分组（`demo-api`，匹配 `/api/**`）
+- `me.auth.header-resolver.enabled: true`：开启 auth 请求头解析器（由 `frame-me-boot` 传递）
+- `logging`：日志输出到 `./logs`，复用 `logback-frame-me.xml` 共享模板（见 `logback-spring.xml`）
+
+静态资源：`fm-demo-service/src/main/resources/static/favicon.ico` 提供应用 favicon。
