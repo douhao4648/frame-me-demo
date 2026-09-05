@@ -9,7 +9,7 @@
 - `fm-demo-api`：对外暴露的接口契约与 DTO。
 - `fm-demo-service`：基于 Spring Boot 的启动服务，依赖 `frame-me-boot` 集成各基础能力。
 
-技术栈：Java 25、Spring Boot 4.0.7、Maven、MyBatis-Plus、MapStruct、MySQL（多数据源 + Druid 监控）、Logback（共享模板）。
+技术栈：Java 21、Spring Boot 4.0.7、Maven、MyBatis-Plus、MapStruct、MySQL（多数据源 + Druid 监控）、Logback（共享模板）。
 
 ## 阅读前置
 

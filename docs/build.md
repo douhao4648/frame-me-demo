@@ -2,7 +2,7 @@
 
 ## 环境要求
 
-- JDK 25+
+- JDK 21+
 - Maven 3.9+
 - （可选）本地已安装 `frame-me-parent` 及其模块到本地 Maven 仓库
 

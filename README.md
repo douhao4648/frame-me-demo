@@ -12,7 +12,7 @@ fm-demo
 
 ## 技术栈
 
-- Java 25
+- Java 21
 - Spring Boot 4.0.7
 - Maven
 - MyBatis-Plus
@@ -22,7 +22,7 @@ fm-demo
 
 ## 前置条件
 
-- JDK 25+
+- JDK 21+
 - Maven 3.9+
 - 本地已安装 `frame-me-parent` 及其模块到 Maven 本地仓库
 
